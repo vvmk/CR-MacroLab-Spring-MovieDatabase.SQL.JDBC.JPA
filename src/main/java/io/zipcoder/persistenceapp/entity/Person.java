@@ -1,17 +1,36 @@
 package io.zipcoder.persistenceapp.entity;
 
+import javax.persistence.*;
+
 /**
  * project: persistence-starter
  * package: io.zipcoder.persistenceapp.entity
  * author: https://github.com/vvmk
  * date: 4/7/18
  */
+@Entity
 public class Person {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "PERSON_ID")
     Long Id;
+
+    @Column(name = "FIRST_NAME")
     String firstname;
+
+    @Column(name = "LAST_NAME")
     String lastname;
+
+    @Column(name = "MOBILE")
     String mobile;
+
+    @Column(name = "BIRTHDATE")
     Long birthdate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @Column(name = "HOME_ID")
+    Long homeId;
 
     public Person(Long id, String firstname, String lastname, String mobile, Long birthdate) {
         Id = id;
@@ -19,6 +38,7 @@ public class Person {
         this.lastname = lastname;
         this.birthdate = birthdate;
     }
+
     public Person() {
         // :x
     }
