@@ -1,12 +1,7 @@
 package io.zipcoder.persistenceapp.services;
 
 import io.zipcoder.persistenceapp.entity.Person;
-import io.zipcoder.persistenceapp.repository.PersonRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,59 +9,29 @@ import java.util.Map;
 
 /**
  * project: persistence-starter
- * package: io.zipcoder.persistenceapp
+ * package: io.zipcoder.persistenceapp.services
  * author: https://github.com/vvmk
- * date: 4/7/18
+ * date: 4/8/18
  */
 
-@Service
-public class PersonService {
-    private static final Logger log = LoggerFactory.getLogger(PersonService.class);
+public interface PersonService {
+    ResponseEntity<?> addPerson(Person person);
 
-    private PersonRepository personRepo;
+    ResponseEntity<?> updatePerson(Person person);
 
-    @Autowired
-    public PersonService(PersonRepository personRepo) {
-        this.personRepo = personRepo;
-    }
+    ResponseEntity<?> removePerson(Long personId);
 
-    public ResponseEntity<?> addPerson(Person person) {
-        return null;
-    }
+    ResponseEntity<?> removeAll(Collection<Person> people);
 
-    public ResponseEntity<?> updatePerson(Person person) {
-        return null;
-    }
+    ResponseEntity<List<Person>> findByFirstName(String firstname);
 
-    public ResponseEntity<?> removePerson(Long personId) {
-        return null;
-    }
+    ResponseEntity<List<Person>> findByLastName(String lastname);
 
-    public ResponseEntity<?> removeAll(Collection<Person> people) {
-        return null;
-    }
+    ResponseEntity<List<Person>> findByBirthdate(Long birthdate);
 
-    public ResponseEntity<List<Person>> findByFirstName(String firstname) {
-        return null;
-    }
+    ResponseEntity<Person> findById(Long id);
 
-    public ResponseEntity<List<Person>> findByLastName(String lastname) {
-        return null;
-    }
+    Map<String, List<Person>> getDirectorybySurname(String surname);
 
-    public ResponseEntity<List<Person>> findByBirthdate(Long birthdate) {
-        return null;
-    }
-
-    public ResponseEntity<Person> findById(Long id) {
-        return null;
-    }
-
-    public Map<String, List<Person>> getDirectorybySurname(String surname) {
-        return null;
-    }
-
-    public Map<String, Integer> getFirstNameFrequencyMap(String name) {
-        return null;
-    }
+    Map<String, Integer> getFirstNameFrequencyMap(String name);
 }

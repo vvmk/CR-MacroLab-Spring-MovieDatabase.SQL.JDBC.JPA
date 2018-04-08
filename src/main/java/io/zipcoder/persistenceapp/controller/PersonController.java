@@ -2,8 +2,12 @@ package io.zipcoder.persistenceapp.controller;
 
 import io.zipcoder.persistenceapp.entity.Person;
 import io.zipcoder.persistenceapp.services.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
@@ -22,6 +26,7 @@ public class PersonController {
 
     private PersonService personService;
 
+    @Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
@@ -51,17 +56,17 @@ public class PersonController {
         return null;
     }
 
-    @RequestMapping(value="/people/reverselookup/{mobile}", method = GET)
+    @RequestMapping(value = "/people/reverselookup/{mobile}", method = GET)
     public ResponseEntity<Iterable<Person>> reverseLookup(@PathVariable String mobile) {
-         return null;
+        return null;
     }
 
-    @RequestMapping(value="/people/surname/{lastName}", method = GET)
+    @RequestMapping(value = "/people/surname/{lastName}", method = GET)
     public ResponseEntity<Map<String, List<Person>>> surnameLookup(@PathVariable String lastName) {
         return null;
     }
 
-    @RequestMapping(value="/people/firstname/stats", method = GET)
+    @RequestMapping(value = "/people/firstname/stats", method = GET)
     public ResponseEntity<Map<String, Integer>> firstNameStats() {
         return null;
     }

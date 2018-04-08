@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class PersistenceStarterApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PersistenceStarterApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PersistenceStarterApplication.class, args);
+    }
 
-	@Bean
-	ServletRegistrationBean h2servletRegistration(){
-		ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
-		registrationBean.addUrlMappings("/console/*");
-		return registrationBean;
-	}
+    @Bean
+    ServletRegistrationBean h2servletRegistration() {
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
+        registrationBean.addUrlMappings("/console/*");
+        return registrationBean;
+    }
 }

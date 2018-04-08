@@ -8,6 +8,7 @@ import javax.persistence.*;
  * author: https://github.com/vvmk
  * date: 4/7/18
  */
+
 @Entity
 public class Person {
 
@@ -29,7 +30,6 @@ public class Person {
     Long birthdate;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @Column(name = "HOME_ID")
     Long homeId;
 
     public Person(Long id, String firstname, String lastname, String mobile, Long birthdate) {
