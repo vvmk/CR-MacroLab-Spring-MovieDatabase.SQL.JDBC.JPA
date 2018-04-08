@@ -29,9 +29,9 @@ public interface PersonService {
 
     ResponseEntity<Iterable<Person>> findByLastName(String lastname);
 
-    ResponseEntity<Iterable<Person>> findByBirthdate(Long birthdate);
+    ResponseEntity<Iterable<Person>> findByBirthday(String birthday);
 
-    ResponseEntity<Person> reverseLookup(String mobile);
+    ResponseEntity<Iterable<Person>> reverseLookup(String mobile);
 
     ResponseEntity<Person> findById(Long id);
 

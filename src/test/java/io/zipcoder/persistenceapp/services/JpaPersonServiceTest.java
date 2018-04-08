@@ -7,14 +7,18 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
 
+import javax.xml.ws.Response;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 /**
  * project: persistence-starter
@@ -46,59 +50,95 @@ public class JpaPersonServiceTest {
     }
 
     @Test
-    public void getAllPeople() {
+    public void getAllPeopleStatusOK() {
+        ResponseEntity<Iterable<Person>> response = ps.getAllPeople();
+
+        verify(personRepo).findAll();
+        assertEquals(OK, response.getStatusCode());
     }
 
     @Test
-    public void addPerson() {
+    public void addPersonStatusCREATED() {
+        ResponseEntity<?> response = ps.addPerson(mock(Person.class));
+
+        verify(personRepo).save(any(Person.class));
+        assertEquals(CREATED, response.getStatusCode());
     }
 
     @Test
-    public void updatePerson() {
+    public void updatePersonStatusOK() {
+        ResponseEntity<?> response = ps.updatePerson(mock(Person.class));
+
+        verify(personRepo).save(any(Person.class));
+        assertEquals(OK, response.getStatusCode());
     }
 
     @Test
-    public void removePerson() {
+    public void removePersonStatusOK() {
+        ResponseEntity<?> response = ps.removePerson(mock(Long.class));
+
+        verify(personRepo).deleteById(anyLong());
+        assertEquals(OK, response.getStatusCode());
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAll() {
+    public void removeAllIsUnsupportedOp() {
         ps.removeAll(mock(Collection.class));
     }
 
     @Test
-    public void findByFirstName() {
+    public void findByFirstNameStatusOK() {
+        ResponseEntity<Iterable<Person>> response = ps.findByFirstName(mock(String.class));
+
+        //TODO: verify(personRepo).findByFirstName(anyString());
+        assertEquals(OK, response.getStatusCode());
     }
 
     @Test
-    public void getFirstNameStats() {
+    public void getFirstNameStatsStatusOK() {
+        ResponseEntity<Map<String, Integer>> response = ps.getFirstNameStats();
+
+        //TODO: verify(personRepo).getFirstNameStats();
+        assertEquals(OK, response.getStatusCode());
     }
 
     @Test
-    public void findByLastName() {
+    public void findByLastNameStatusOK() {
+        ResponseEntity<Iterable<Person>> response = ps.findByLastName(mock(String.class));
+
+        //TODO: verify(personRepo).findByLastName(anyString());
+        assertEquals(OK, response.getStatusCode());
     }
 
     @Test
-    public void findByBirthdate() {
+    public void findByBirthdateStatusOK() {
+        ResponseEntity<Iterable<Person>> response = ps.findByBirthday(mock(String.class));
+
+        //TODO: verify(personRepo).findByBirthday(anyString());
+        assertEquals(OK, response.getStatusCode());
     }
 
     @Test
     public void reverseLookup() {
+        ResponseEntity<Iterable<Person>> response = ps.reverseLookup(mock(String.class));
+
+        //TODO: verify(personRepo).reverseLookup(anyString());
+        assertEquals(OK, response.getStatusCode());
     }
 
     @Test
     public void findById() {
+        ResponseEntity<Person> response = ps.findById(mock(Long.class));
+
+        verify(personRepo).findById(anyLong());
+        assertEquals(OK, response.getStatusCode());
     }
 
     @Test
     public void getDirectorybySurname() {
-    }
+        ResponseEntity<Map<String, List<Person>>> response = ps.getDirectorybySurname(mock(String.class));
 
-    @Test
-    public void getFirstNameStats1() {
-    }
-
-    @Test
-    public void getFirstNameFrequencyMap() {
+        //TODO: verify(personRepo).getSurnameDirectory();
+        assertEquals(OK, response.getStatusCode());
     }
 }

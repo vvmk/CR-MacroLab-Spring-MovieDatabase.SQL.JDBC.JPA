@@ -55,19 +55,15 @@ public class JpaPersonService implements PersonService {
         return null;
     }
 
-    public ResponseEntity<Iterable<Person>> getFirstNameStats(String firstname) {
-        return null;
-    }
-
     public ResponseEntity<Iterable<Person>> findByLastName(String lastname) {
         return null;
     }
 
-    public ResponseEntity<Iterable<Person>> findByBirthdate(Long birthdate) {
+    public ResponseEntity<Iterable<Person>> findByBirthday(String birthday) {
         return null;
     }
 
-    public ResponseEntity<Person> reverseLookup(String mobile) {
+    public ResponseEntity<Iterable<Person>> reverseLookup(String mobile) {
         return null;
     }
 
@@ -80,10 +76,6 @@ public class JpaPersonService implements PersonService {
     }
 
     public ResponseEntity<Map<String, Integer>> getFirstNameStats() {
-        return null;
-    }
-
-    public ResponseEntity<Map<String, Integer>> getFirstNameFrequencyMap() {
         return null;
     }
 }

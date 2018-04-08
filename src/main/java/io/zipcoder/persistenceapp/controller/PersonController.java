@@ -56,7 +56,7 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/people/reverselookup/{mobile}", method = GET)
-    public ResponseEntity<Person> reverseLookup(@PathVariable String mobile) {
+    public ResponseEntity<Iterable<Person>> reverseLookup(@PathVariable String mobile) {
         return personService.reverseLookup(mobile);
     }
 
