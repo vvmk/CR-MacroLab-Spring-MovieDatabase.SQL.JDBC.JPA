@@ -1,9 +1,7 @@
 package io.zipcoder.persistenceapp.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * project: persistence-starter
@@ -25,6 +23,11 @@ public class Home {
 
     @Column(name = "HOMENUMBER")
     private String homeNumber;
+
+    @OneToMany
+    @JoinColumn(name="HOME_ID")
+    @OrderBy
+    private List<Person> residents;
 
     public Home() {
     }

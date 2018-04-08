@@ -2,6 +2,7 @@ package io.zipcoder.persistenceapp.services;
 
 import io.zipcoder.persistenceapp.entity.Person;
 import io.zipcoder.persistenceapp.repository.PersonRepository;
+import io.zipcoder.persistenceapp.services.serviceinterface.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

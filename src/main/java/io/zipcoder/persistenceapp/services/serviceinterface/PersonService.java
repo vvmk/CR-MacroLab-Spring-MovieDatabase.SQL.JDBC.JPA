@@ -1,4 +1,4 @@
-package io.zipcoder.persistenceapp.services;
+package io.zipcoder.persistenceapp.services.serviceinterface;
 
 import io.zipcoder.persistenceapp.entity.Person;
 import org.springframework.http.ResponseEntity;

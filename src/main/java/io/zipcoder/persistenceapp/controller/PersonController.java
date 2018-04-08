@@ -1,7 +1,7 @@
 package io.zipcoder.persistenceapp.controller;
 
 import io.zipcoder.persistenceapp.entity.Person;
-import io.zipcoder.persistenceapp.services.PersonService;
+import io.zipcoder.persistenceapp.services.serviceinterface.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

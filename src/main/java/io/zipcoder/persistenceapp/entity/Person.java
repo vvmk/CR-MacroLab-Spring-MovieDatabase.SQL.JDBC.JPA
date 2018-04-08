@@ -15,32 +15,33 @@ public class Person {
     @Id
     @GeneratedValue
     @Column(name = "PERSON_ID")
-    Long Id;
+    private Long Id;
 
     @Column(name = "FIRST_NAME")
-    String firstname;
+    private String firstname;
 
     @Column(name = "LAST_NAME")
-    String lastname;
+    private String lastname;
 
     @Column(name = "MOBILE")
-    String mobile;
+    private String mobile;
 
     @Column(name = "BIRTHDATE")
-    Long birthdate;
+    private Long birthdate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    Long homeId;
-
-    public Person(Long id, String firstname, String lastname, String mobile, Long birthdate) {
-        Id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.birthdate = birthdate;
-    }
+    @ManyToOne
+    private Home home;
 
     public Person() {
         // :x
+    }
+
+    public Home getHome() {
+        return home;
+    }
+
+    public void setHome(Home home) {
+        this.home = home;
     }
 
     public String getMobile() {
