@@ -30,18 +30,15 @@ public class PersonService {
     }
 
     public HttpStatus addPerson(Person person) {
-        jdbcTemplate.execute("INSERT INTO PERSON(last_name, first_name, mobile, birthday) " +
-                "VALUES(" +
-                person.getLastname() + ", " +
-                person.getFirstname() + ", " +
-                person.getMobile() + ", " +
-                person.getBirthdate() + ")"
-        );
+        String sqlInsert = buildInsertFromPerson(person);
+        jdbcTemplate.execute(sqlInsert);
         return HttpStatus.CREATED;
     }
 
     public HttpStatus updatePerson(Person person) {
-        return null;
+        String sqlUpdate = buildInsertFromPerson(person);
+        jdbcTemplate.update(sqlUpdate);
+        return HttpStatus.OK;
     }
 
     public HttpStatus removePerson(Long personId) {
@@ -74,5 +71,14 @@ public class PersonService {
 
     public Map<String, Integer> getFirstNameFrequencyMap(String name) {
         return null;
+    }
+
+    private String buildInsertFromPerson(Person person) {
+        return "INSERT INTO PERSON(last_name, first_name, mobile, birthday) " +
+                "VALUES(" +
+                person.getLastname() + ", " +
+                person.getFirstname() + ", " +
+                person.getMobile() + ", " +
+                person.getBirthdate() + ")";
     }
 }
