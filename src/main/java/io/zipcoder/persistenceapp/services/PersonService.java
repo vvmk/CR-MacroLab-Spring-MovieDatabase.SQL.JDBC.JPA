@@ -42,7 +42,8 @@ public class PersonService {
     }
 
     public HttpStatus removePerson(Long personId) {
-        return null;
+        jdbcTemplate.execute("DELETE FROM PERSON WHERE ID = " + personId);
+        return HttpStatus.OK;
     }
 
     public HttpStatus removeAll(Collection<Person> people) {
@@ -50,6 +51,8 @@ public class PersonService {
     }
 
     public List<Person> findByFirstName(String firstname) {
+        //jdbcTemplate.query("SELECT * FROM PERSON WHERE " +
+        //      "first_name = " + firstname +")", new BeanPropertyRowMapper(Person.class));
         return null;
     }
 
