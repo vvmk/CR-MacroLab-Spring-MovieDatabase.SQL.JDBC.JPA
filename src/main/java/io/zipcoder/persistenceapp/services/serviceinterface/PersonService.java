@@ -15,6 +15,8 @@ import java.util.Map;
  */
 
 public interface PersonService {
+    ResponseEntity<Iterable<Person>> getAllPeople();
+
     ResponseEntity<?> addPerson(Person person);
 
     ResponseEntity<?> updatePerson(Person person);
@@ -23,11 +25,13 @@ public interface PersonService {
 
     ResponseEntity<?> removeAll(Collection<Person> people);
 
-    ResponseEntity<List<Person>> findByFirstName(String firstname);
+    ResponseEntity<Map<String, Integer>> getFirstNameStats();
 
-    ResponseEntity<List<Person>> findByLastName(String lastname);
+    ResponseEntity<Map<String, List<Person>>> findByLastName(String lastname);
 
     ResponseEntity<List<Person>> findByBirthdate(Long birthdate);
+
+    ResponseEntity<Person> reverseLookup(String mobile);
 
     ResponseEntity<Person> findById(Long id);
 

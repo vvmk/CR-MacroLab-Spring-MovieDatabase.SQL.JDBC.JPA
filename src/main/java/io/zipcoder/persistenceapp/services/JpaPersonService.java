@@ -47,7 +47,7 @@ public class JpaPersonService implements PersonService {
         return null;
     }
 
-    public ResponseEntity<List<Person>> findByFirstName(String firstname) {
+    public ResponseEntity<List<Person>> getFirstNameStats(String firstname) {
         return null;
     }
 

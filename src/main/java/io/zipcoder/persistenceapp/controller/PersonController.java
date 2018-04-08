@@ -33,41 +33,41 @@ public class PersonController {
 
     @RequestMapping(value = "/people", method = GET)
     public ResponseEntity<Iterable<Person>> getAllPeople() {
-        return null;
+        return personService.getAllPeople();
     }
 
     @RequestMapping(value = "/people", method = POST)
     public ResponseEntity<?> createPerson(@RequestBody Person person) {
-        return null;
+        return personService.addPerson(person);
     }
 
     @RequestMapping(value = "/people/{id}", method = PUT)
     public ResponseEntity<?> updatePerson(@RequestBody Person person, @PathVariable Long id) {
-        return null;
+        return personService.updatePerson(person);
     }
 
     @RequestMapping(value = "/people/{id}", method = GET)
     public ResponseEntity<Person> getPerson(@PathVariable Long id) {
-        return null;
+        return personService.findById(id);
     }
 
     @RequestMapping(value = "/people/{id}", method = DELETE)
     public ResponseEntity<?> deletePerson(@PathVariable Long id) {
-        return null;
+        return personService.removePerson(id);
     }
 
     @RequestMapping(value = "/people/reverselookup/{mobile}", method = GET)
-    public ResponseEntity<Iterable<Person>> reverseLookup(@PathVariable String mobile) {
-        return null;
+    public ResponseEntity<Person> reverseLookup(@PathVariable String mobile) {
+        return personService.reverseLookup(mobile);
     }
 
     @RequestMapping(value = "/people/surname/{lastName}", method = GET)
     public ResponseEntity<Map<String, List<Person>>> surnameLookup(@PathVariable String lastName) {
-        return null;
+        return personService.findByLastName(lastName);
     }
 
     @RequestMapping(value = "/people/firstname/stats", method = GET)
     public ResponseEntity<Map<String, Integer>> firstNameStats() {
-        return null;
+        return personService.getFirstNameStats();
     }
 }
