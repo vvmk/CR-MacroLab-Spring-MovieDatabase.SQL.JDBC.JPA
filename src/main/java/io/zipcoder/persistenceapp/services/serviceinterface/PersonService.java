@@ -25,17 +25,17 @@ public interface PersonService {
 
     ResponseEntity<?> removeAll(Collection<Person> people);
 
-    ResponseEntity<Map<String, Integer>> getFirstNameStats();
+    ResponseEntity<Iterable<Person>> findByFirstName(String firstname);
 
-    ResponseEntity<Map<String, List<Person>>> findByLastName(String lastname);
+    ResponseEntity<Iterable<Person>> findByLastName(String lastname);
 
-    ResponseEntity<List<Person>> findByBirthdate(Long birthdate);
+    ResponseEntity<Iterable<Person>> findByBirthdate(Long birthdate);
 
     ResponseEntity<Person> reverseLookup(String mobile);
 
     ResponseEntity<Person> findById(Long id);
 
-    Map<String, List<Person>> getDirectorybySurname(String surname);
+    ResponseEntity<Map<String, List<Person>>> getDirectorybySurname(String surname);
 
-    Map<String, Integer> getFirstNameFrequencyMap(String name);
+    ResponseEntity<Map<String, Integer>> getFirstNameStats();
 }

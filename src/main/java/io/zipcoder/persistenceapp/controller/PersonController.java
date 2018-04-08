@@ -62,7 +62,7 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/people/surname/{lastName}", method = GET)
-    public ResponseEntity<Map<String, List<Person>>> surnameLookup(@PathVariable String lastName) {
+    public ResponseEntity<Iterable<Person>> surnameLookup(@PathVariable String lastName) {
         return personService.findByLastName(lastName);
     }
 

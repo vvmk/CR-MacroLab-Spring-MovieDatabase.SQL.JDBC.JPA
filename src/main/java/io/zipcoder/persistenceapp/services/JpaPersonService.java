@@ -31,6 +31,10 @@ public class JpaPersonService implements PersonService {
         this.personRepo = personRepo;
     }
 
+    public ResponseEntity<Iterable<Person>> getAllPeople() {
+        return null;
+    }
+
     public ResponseEntity<?> addPerson(Person person) {
         return null;
     }
@@ -47,15 +51,23 @@ public class JpaPersonService implements PersonService {
         return null;
     }
 
-    public ResponseEntity<List<Person>> getFirstNameStats(String firstname) {
+    public ResponseEntity<Iterable<Person>> findByFirstName(String firstname) {
         return null;
     }
 
-    public ResponseEntity<List<Person>> findByLastName(String lastname) {
+    public ResponseEntity<Iterable<Person>> getFirstNameStats(String firstname) {
+        throw new UnsupportedOperationException();
+    }
+
+    public ResponseEntity<Iterable<Person>> findByLastName(String lastname) {
         return null;
     }
 
-    public ResponseEntity<List<Person>> findByBirthdate(Long birthdate) {
+    public ResponseEntity<Iterable<Person>> findByBirthdate(Long birthdate) {
+        return null;
+    }
+
+    public ResponseEntity<Person> reverseLookup(String mobile) {
         return null;
     }
 
@@ -63,11 +75,15 @@ public class JpaPersonService implements PersonService {
         return null;
     }
 
-    public Map<String, List<Person>> getDirectorybySurname(String surname) {
+    public ResponseEntity<Map<String, List<Person>>> getDirectorybySurname(String surname) {
         return null;
     }
 
-    public Map<String, Integer> getFirstNameFrequencyMap(String name) {
+    public ResponseEntity<Map<String, Integer>> getFirstNameStats() {
         return null;
+    }
+
+    public ResponseEntity<Map<String, Integer>> getFirstNameFrequencyMap() {
+        throw new UnsupportedOperationException();
     }
 }
