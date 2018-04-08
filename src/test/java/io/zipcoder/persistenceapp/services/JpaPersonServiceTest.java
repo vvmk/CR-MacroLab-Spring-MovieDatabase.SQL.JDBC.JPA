@@ -33,6 +33,9 @@ public class JpaPersonServiceTest {
     @Mock
     private PersonRepository personRepo;
 
+    private String mockString = "";
+    private Long mockLong = 10L;
+
     @Before
     @SuppressWarnings("unchecked")
     public void setUp() {
@@ -74,7 +77,7 @@ public class JpaPersonServiceTest {
 
     @Test
     public void removePersonStatusOK() {
-        ResponseEntity<?> response = ps.removePerson(mock(Long.class));
+        ResponseEntity<?> response = ps.removePerson(mockLong);
 
         verify(personRepo).deleteById(anyLong());
         assertEquals(OK, response.getStatusCode());
@@ -87,7 +90,7 @@ public class JpaPersonServiceTest {
 
     @Test
     public void findByFirstNameStatusOK() {
-        ResponseEntity<Iterable<Person>> response = ps.findByFirstName(mock(String.class));
+        ResponseEntity<Iterable<Person>> response = ps.findByFirstName(mockString);
 
         verify(personRepo).findAllByFirstname(anyString());
         assertEquals(OK, response.getStatusCode());
@@ -103,7 +106,7 @@ public class JpaPersonServiceTest {
 
     @Test
     public void findByLastNameStatusOK() {
-        ResponseEntity<Iterable<Person>> response = ps.findByLastName(mock(String.class));
+        ResponseEntity<Iterable<Person>> response = ps.findByLastName("name");
 
         verify(personRepo).findAllByLastname(anyString());
         assertEquals(OK, response.getStatusCode());
@@ -111,7 +114,7 @@ public class JpaPersonServiceTest {
 
     @Test
     public void findByBirthdateStatusOK() {
-        ResponseEntity<Iterable<Person>> response = ps.findByBirthday(mock(String.class));
+        ResponseEntity<Iterable<Person>> response = ps.findByBirthday(mockString);
 
         verify(personRepo).findAllByBirthdate(anyString());
         assertEquals(OK, response.getStatusCode());
@@ -119,7 +122,7 @@ public class JpaPersonServiceTest {
 
     @Test
     public void reverseLookup() {
-        ResponseEntity<Iterable<Person>> response = ps.reverseLookup(mock(String.class));
+        ResponseEntity<Iterable<Person>> response = ps.reverseLookup(mockString);
 
         verify(personRepo).findAllByMobile(anyString());
         assertEquals(OK, response.getStatusCode());
@@ -127,7 +130,7 @@ public class JpaPersonServiceTest {
 
     @Test
     public void findById() {
-        ResponseEntity<Person> response = ps.findById(mock(Long.class));
+        ResponseEntity<Person> response = ps.findById(mockLong);
 
         verify(personRepo).findById(anyLong());
         assertEquals(OK, response.getStatusCode());
@@ -135,7 +138,7 @@ public class JpaPersonServiceTest {
 
     @Test
     public void getDirectorybySurname() {
-        ResponseEntity<Map<String, List<Person>>> response = ps.getDirectorybySurname(mock(String.class));
+        ResponseEntity<Map<String, List<Person>>> response = ps.getDirectorybySurname(mockString);
 
         //TODO: verify(personRepo).getSurnameDirectory();
         assertEquals(OK, response.getStatusCode());

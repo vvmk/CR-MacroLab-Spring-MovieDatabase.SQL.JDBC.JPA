@@ -3,15 +3,19 @@ package io.zipcoder.persistenceapp.services;
 import io.zipcoder.persistenceapp.entity.Person;
 import io.zipcoder.persistenceapp.repository.PersonRepository;
 import io.zipcoder.persistenceapp.services.serviceinterface.PersonService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
 
 /**
  * project: persistence-starter
@@ -22,7 +26,7 @@ import java.util.Map;
 
 @Service
 public class JpaPersonService implements PersonService {
-    private static final Logger log = LoggerFactory.getLogger(JpaPersonService.class);
+    //TODO: private static final Logger log = LoggerFactory.getLogger(JpaPersonService.class);
 
     private PersonRepository personRepo;
 
@@ -32,43 +36,46 @@ public class JpaPersonService implements PersonService {
     }
 
     public ResponseEntity<Iterable<Person>> getAllPeople() {
-        return null;
+        return new ResponseEntity<>(personRepo.findAll(), OK);
     }
 
-    public ResponseEntity<?> addPerson(Person person) {
-        return null;
+    public ResponseEntity<Person> addPerson(Person person) {
+        return new ResponseEntity<>(personRepo.save(person), CREATED);
     }
 
-    public ResponseEntity<?> updatePerson(Person person) {
-        return null;
+    public ResponseEntity<Person> updatePerson(Person person) {
+        return new ResponseEntity<>(personRepo.save(person), OK);
     }
 
-    public ResponseEntity<?> removePerson(Long personId) {
-        return null;
+    public ResponseEntity removePerson(Long personId) {
+        personRepo.deleteById(personId);
+        return new ResponseEntity( OK);
     }
 
-    public ResponseEntity<?> removeAll(Collection<Person> people) {
+    public ResponseEntity removeAll(Collection<Person> people) {
         throw new UnsupportedOperationException();
     }
 
     public ResponseEntity<Iterable<Person>> findByFirstName(String firstname) {
-        return null;
+        return new ResponseEntity<>(personRepo.findAllByFirstname(firstname), OK);
     }
 
     public ResponseEntity<Iterable<Person>> findByLastName(String lastname) {
-        return null;
+        return new ResponseEntity<>(personRepo.findAllByLastname(lastname), OK);
     }
 
-    public ResponseEntity<Iterable<Person>> findByBirthday(String birthday) {
-        return null;
+    public ResponseEntity<Iterable<Person>> findByBirthday(String birthdate) {
+        return new ResponseEntity<>(personRepo.findAllByBirthdate(birthdate), OK);
     }
 
     public ResponseEntity<Iterable<Person>> reverseLookup(String mobile) {
-        return null;
+        return new ResponseEntity<>(personRepo.findAllByMobile(mobile), OK);
     }
 
     public ResponseEntity<Person> findById(Long id) {
-        return null;
+        Optional<Person> p = personRepo.findById(id);
+        HttpStatus status = p.isPresent() ? OK : NOT_FOUND;
+        return new ResponseEntity<>(p.orElse(new Person()), status);
     }
 
     public ResponseEntity<Map<String, List<Person>>> getDirectorybySurname(String surname) {

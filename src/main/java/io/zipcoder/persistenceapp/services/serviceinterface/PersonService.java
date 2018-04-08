@@ -17,13 +17,13 @@ import java.util.Map;
 public interface PersonService {
     ResponseEntity<Iterable<Person>> getAllPeople();
 
-    ResponseEntity<?> addPerson(Person person);
+    ResponseEntity<Person> addPerson(Person person);
 
-    ResponseEntity<?> updatePerson(Person person);
+    ResponseEntity<Person> updatePerson(Person person);
 
-    ResponseEntity<?> removePerson(Long personId);
+    ResponseEntity removePerson(Long personId);
 
-    ResponseEntity<?> removeAll(Collection<Person> people);
+    ResponseEntity removeAll(Collection<Person> people);
 
     ResponseEntity<Iterable<Person>> findByFirstName(String firstname);
 
