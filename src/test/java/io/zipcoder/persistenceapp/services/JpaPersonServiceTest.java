@@ -1,7 +1,20 @@
 package io.zipcoder.persistenceapp.services;
 
+import io.zipcoder.persistenceapp.entity.Person;
+import io.zipcoder.persistenceapp.repository.PersonRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.Collection;
+import java.util.Optional;
+
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
 
 /**
  * project: persistence-starter
@@ -11,8 +24,25 @@ import org.junit.Test;
  */
 public class JpaPersonServiceTest {
 
+    @InjectMocks
+    private JpaPersonService ps;
+
+    @Mock
+    private PersonRepository personRepo;
+
     @Before
+    @SuppressWarnings("unchecked")
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
+
+        when(personRepo.findAll())
+                .thenReturn(mock(Iterable.class));
+
+        when(personRepo.findById(anyLong()))
+                .thenReturn(Optional.of(mock(Person.class)));
+
+        when(personRepo.save(any(Person.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
     }
 
     @Test
@@ -33,6 +63,7 @@ public class JpaPersonServiceTest {
 
     @Test(expected = UnsupportedOperationException.class)
     public void removeAll() {
+        ps.removeAll(mock(Collection.class));
     }
 
     @Test
