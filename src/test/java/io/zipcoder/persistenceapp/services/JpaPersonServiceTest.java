@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-import javax.xml.ws.Response;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +89,7 @@ public class JpaPersonServiceTest {
     public void findByFirstNameStatusOK() {
         ResponseEntity<Iterable<Person>> response = ps.findByFirstName(mock(String.class));
 
-        //TODO: verify(personRepo).findByFirstName(anyString());
+        verify(personRepo).findAllByFirstname(anyString());
         assertEquals(OK, response.getStatusCode());
     }
 
@@ -106,7 +105,7 @@ public class JpaPersonServiceTest {
     public void findByLastNameStatusOK() {
         ResponseEntity<Iterable<Person>> response = ps.findByLastName(mock(String.class));
 
-        //TODO: verify(personRepo).findByLastName(anyString());
+        verify(personRepo).findAllByLastname(anyString());
         assertEquals(OK, response.getStatusCode());
     }
 
@@ -114,7 +113,7 @@ public class JpaPersonServiceTest {
     public void findByBirthdateStatusOK() {
         ResponseEntity<Iterable<Person>> response = ps.findByBirthday(mock(String.class));
 
-        //TODO: verify(personRepo).findByBirthday(anyString());
+        verify(personRepo).findAllByBirthdate(anyString());
         assertEquals(OK, response.getStatusCode());
     }
 
@@ -122,7 +121,7 @@ public class JpaPersonServiceTest {
     public void reverseLookup() {
         ResponseEntity<Iterable<Person>> response = ps.reverseLookup(mock(String.class));
 
-        //TODO: verify(personRepo).reverseLookup(anyString());
+        verify(personRepo).findAllByMobile(anyString());
         assertEquals(OK, response.getStatusCode());
     }
 

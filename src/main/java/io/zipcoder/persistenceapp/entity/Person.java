@@ -27,7 +27,7 @@ public class Person {
     private String mobile;
 
     @Column(name = "BIRTHDATE")
-    private Long birthdate;
+    private String birthdate;
 
     @ManyToOne
     private Home home;
@@ -76,11 +76,11 @@ public class Person {
         this.lastname = lastname;
     }
 
-    public Long getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Long birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
