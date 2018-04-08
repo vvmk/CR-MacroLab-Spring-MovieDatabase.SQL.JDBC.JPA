@@ -25,7 +25,7 @@ public class Home {
     private String homeNumber;
 
     @OneToMany
-    @JoinColumn(name="HOME_ID")
+    @JoinColumn(name = "HOME_ID")
     @OrderBy
     private List<Person> residents;
 

@@ -20,7 +20,7 @@ import java.util.Map;
  * date: 4/7/18
  */
 
-@Service()
+@Service
 public class JpaPersonService implements PersonService {
     private static final Logger log = LoggerFactory.getLogger(JpaPersonService.class);
 
@@ -48,7 +48,7 @@ public class JpaPersonService implements PersonService {
     }
 
     public ResponseEntity<?> removeAll(Collection<Person> people) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     public ResponseEntity<Iterable<Person>> findByFirstName(String firstname) {
@@ -56,7 +56,7 @@ public class JpaPersonService implements PersonService {
     }
 
     public ResponseEntity<Iterable<Person>> getFirstNameStats(String firstname) {
-        throw new UnsupportedOperationException();
+        return null;
     }
 
     public ResponseEntity<Iterable<Person>> findByLastName(String lastname) {
@@ -84,6 +84,6 @@ public class JpaPersonService implements PersonService {
     }
 
     public ResponseEntity<Map<String, Integer>> getFirstNameFrequencyMap() {
-        throw new UnsupportedOperationException();
+        return null;
     }
 }
